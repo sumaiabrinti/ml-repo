@@ -2,7 +2,8 @@
 
 PORT=8001
 echo "Port: $PORT"
-
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Name of the Pod: $POD_NAME
 # POST method predict
 curl -d '{  
    "CHAS":{  
@@ -25,4 +26,4 @@ curl -d '{
    }
 }'\
      -H "Content-Type: application/json" \
-     -X POST http://localhost:$PORT/predict
+     -X POST http://localhost:$PORT/api/v1/namespaces/default/pods/$POD_NAME/proxy/predict
