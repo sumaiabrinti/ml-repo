@@ -1,15 +1,20 @@
 #!/usr/bin/env bash
-# This file tags and uploads an image to Docker Hub
 
-# Assumes that an image is built via `run_docker.sh`
+# This tags and uploads an image to Docker Hub
 
 # Step 1:
-# Create dockerpath
-# dockerpath=<your docker ID/path>
-
-# Step 2:  
-# Authenticate & tag
-echo "Docker ID and Image: $dockerpath"
+# This is your Docker ID/path
+ dockerpath=sumaiabrinti/ml-repo                                                                                        
+# Step 2
+# Run the Docker Hub container with kubernetes
+kubectl create deployment ml-repo-cluster --image=$dockerpath
 
 # Step 3:
-# Push image to a docker repository
+# List kubernetes pods
+kubectl get pods                                                                                                        
+# Step 4:
+# Forward the container port to a host
+kubectl proxy
+export POD_NAME=$(kubectl get pods -o go-template --template '{{range .items}}{{.metadata.name}}{{"\n"}}{{end}}')
+echo Name of the Pod: $POD_NAME
+
