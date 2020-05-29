@@ -1,0 +1,5 @@
+Error from server (AlreadyExists): deployments.apps "mlcluster" already exists
+NAME                               READY   STATUS    RESTARTS   AGE
+ml-repo-cluster-756f5dc697-qn8d6   1/1     Running   0          47m
+mlcluster-ff5b8b5dc-dpmhc          1/1     Running   0          13m
+Starting to serve on 127.0.0.1:8001
